@@ -1,10 +1,10 @@
 (ns clj-terminal.terminal
+  (:gen-class)
   (:require [clj-terminal.terminal-spec :as ts])
   (:import (com.googlecode.lanterna.terminal.ansi UnixTerminal)
            (com.googlecode.lanterna TextColor$ANSI SGR)
            (com.googlecode.lanterna.terminal Terminal)
            (com.googlecode.lanterna.input KeyStroke)))
-
 
 (defn unix-terminal
   "create new unix terminal object."
@@ -25,7 +25,7 @@
   (.exitPrivateMode t))
 
 (defn get-cursor-position
-  "get current cusror position on terminal"
+  "get current cursor position on terminal"
   [^Terminal t]
   (let [p (.getCursorPosition t)]
     {:col (.getColumn p)
@@ -43,7 +43,7 @@
   [^Terminal t]
   (.clearScreen t))
 
-(defn- ansi-color
+(defn ansi-color
   "return ansi color as TextColor object"
   [c]
   (case c
@@ -97,8 +97,8 @@
   [^Terminal t b]
   (.setCursorVisible t b))
 
-(defn- key-types
-  "decode kestroke"
+(defn key-types
+  "decode keystroke"
   [^KeyStroke k]
   (let [t (.getKeyType k)
         cas {:ctrl  (.isCtrlDown k)

@@ -1,4 +1,5 @@
 (ns clj-terminal.terminal-spec
+  (:gen-class)
   (:require [clojure.spec :as s]
             [clojure.spec.test :as test]
             [clojure.spec.gen :as gen])
@@ -11,6 +12,10 @@
 (s/def ::t/unix-instance #(instance? UnixTerminal %))
 
 (s/def ::t/colors #{:black :white :red :green :blue :cyan :magenta :yellow :default})
+
+#_(s/fdef t/default-terminal
+        :args empty?
+        :ret ::t/unix-instance)
 
 (s/fdef t/unix-terminal
         :args empty?
@@ -102,3 +107,5 @@
 (s/fdef t/reset-color-eff
         :args (s/cat :t ::t/unix-instance)
         :ret nil?)
+
+
