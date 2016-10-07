@@ -62,7 +62,8 @@
   "scroll lines and refresh the screen.
   first-line - first line of the range to be scrolled (top line is 0)
   last-ine - last (inclusive) line of the range to be scrolled
-  distance - if > 0: move lines up, else if < 0: move lines down."
+  distance - if > 0: move lines up, else if < 0: move lines down.
+  buffered operation, need refresh screen to make changes visible."
   [^TerminalScreen ts first-line last-line distance]
   (.scrollLines ts first-line last-line distance))
 
@@ -86,7 +87,8 @@
       (.disableModifiers tg (into-array SGR eff-vec)))))
 
 (defn rectangle
-  "draw a rectangle using a particular character as a border, coordinates and colors."
+  "draw a rectangle using a particular character as a border, coordinates and colors.
+  buffered operation, need refresh screen to make changes visible."
   [^TerminalScreen ts col row width height c & colors]
   (let [tg (.newTextGraphics ts)]
     (if colors
@@ -101,7 +103,8 @@
       (.drawRectangle tg (TerminalPosition. col row) (TerminalSize. width height) c))))
 
 (defn fill-rectangle
-  "fill a rectangle with a particular character, using given coordinates and colors."
+  "fill a rectangle with a particular character, using given coordinates and colors.
+  buffered operation, need refresh screen to make changes visible."
   [^TerminalScreen ts col row width height c & colors]
   (let [tg (.newTextGraphics ts)]
     (if colors
@@ -116,7 +119,8 @@
       (.fillRectangle tg (TerminalPosition. col row) (TerminalSize. width height) c))))
 
 (defn put-character
-  "put character on screen using given coordinates and colors."
+  "put character on screen using given coordinates and colors.
+  buffered operation, need refresh screen to make changes visible."
   [^TerminalScreen ts c col row & colors]
   (let [tg (.newTextGraphics ts)]
     (when colors
@@ -128,7 +132,8 @@
 
 
 (defn put-string
-  "put string on screen using given coordinates and colors."
+  "put string on screen using given coordinates and colors.
+  buffered operation, need refresh screen to make changes visible."
   [^TerminalScreen ts s col row & colors]
   (let [tg (.newTextGraphics ts)]
     (when colors
@@ -139,7 +144,8 @@
     (.putString tg col row s)))
 
 (defn line
-  "draw line using given char, coordinates and colors."
+  "draw line using given char, coordinates and colors.
+  buffered operation, need refresh screen to make changes visible."
   [^TerminalScreen ts from-col from-row to-col to-row c & colors]
   (let [tg (.newTextGraphics ts)]
     (if colors
@@ -152,9 +158,3 @@
                                    (t/ansi-color (:bg (first colors)))
                                    (.getActiveModifiers tg))))
       (.drawLine tg from-col from-row to-col to-row c))))
-
-
-
-
-
-

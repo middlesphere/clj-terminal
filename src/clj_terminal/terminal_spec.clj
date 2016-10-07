@@ -13,10 +13,6 @@
 
 (s/def ::t/colors #{:black :white :red :green :blue :cyan :magenta :yellow :default})
 
-#_(s/fdef t/default-terminal
-        :args empty?
-        :ret ::t/unix-instance)
-
 (s/fdef t/unix-terminal
         :args empty?
         :ret ::t/unix-instance)
