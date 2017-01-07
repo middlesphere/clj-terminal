@@ -51,7 +51,10 @@ In order to get terminal interface just run clj-terminal.terminal/unix-terminal 
 See examples. (cd examples; lein run basic-terminal)
 ![Image of basic-terminal](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/basic-example.png)
 
-
+If you need to prevent terminate program by Ctrl-C then use unix-terminal-without-ctrl-c function.
+```
+    (t/unix-terminal-without-ctrl-c) 
+```
 
 
 ## License
