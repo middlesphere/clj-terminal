@@ -48,9 +48,10 @@ In order to get terminal interface just run clj-terminal.terminal/unix-terminal 
         (t/put-string tm "this is basic terminal example\n")
         (t/set-fg-color tm :default))
 ```
+See examples. (cd examples; lein run basic-terminal)
 ![Image of basic-terminal](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/basic-example.png)
 
-See examples. (cd examples; lein run basic-terminal)
+
 
 
 ## License
