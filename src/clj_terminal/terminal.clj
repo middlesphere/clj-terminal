@@ -1,15 +1,21 @@
 (ns clj-terminal.terminal
   (:gen-class)
   (:require [clj-terminal.terminal-spec :as ts])
-  (:import (com.googlecode.lanterna.terminal.ansi UnixTerminal)
+  (:import (com.googlecode.lanterna.terminal.ansi UnixTerminal UnixLikeTerminal UnixLikeTerminal$CtrlCBehaviour)
            (com.googlecode.lanterna TextColor$ANSI SGR)
-           (com.googlecode.lanterna.terminal Terminal)
-           (com.googlecode.lanterna.input KeyStroke)))
+           (com.googlecode.lanterna.terminal Terminal MouseCaptureMode)
+           (com.googlecode.lanterna.input KeyStroke)
+           (java.nio.charset Charset)))
 
 (defn unix-terminal
   "create new unix terminal object."
   []
   (UnixTerminal.))
+
+(defn unix-terminal-without-ctrl-c
+  "create new unix terminal object where Ctrl-C is disabled."
+  []
+  (UnixTerminal. System/in System/out (Charset/defaultCharset) UnixLikeTerminal$CtrlCBehaviour/TRAP))
 
 (defn enter-private-mode
   "private mode where supported, give your terminal a private area to use, separate from what
@@ -204,4 +210,14 @@
   [^Terminal t]
   (.resetColorAndSGR t))
 
+(defn enable-mouse-capture-mode!
+  "enable catch mouse events in terminal. not all terminals are support this feature.
+  strange behaviour detected! use it carefully. use it primarily with components with buttons."
+  [^Terminal t]
+  (.setMouseCaptureMode t MouseCaptureMode/CLICK_RELEASE))
 
+
+(defn disable-mouse-capture-mode!
+  "disable catch mouse events in terminal."
+  [^Terminal t]
+  (.setMouseCaptureMode t nil))

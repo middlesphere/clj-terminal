@@ -158,3 +158,9 @@
                                    (t/ansi-color (:bg (first colors)))
                                    (.getActiveModifiers tg))))
       (.drawLine tg from-col from-row to-col to-row c))))
+
+(defn read-input
+  "read key from keyboard and return decoded value as map. blocking until key pressed."
+  [^TerminalScreen ts]
+  (let [k (.readInput ts)]
+    (t/key-types k)))

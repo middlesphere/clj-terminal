@@ -17,6 +17,10 @@
         :args empty?
         :ret ::t/unix-instance)
 
+(s/fdef t/unix-terminal-without-ctrl-c
+  :args empty?
+  :ret ::t/unix-instance)
+
 (s/fdef t/enter-private-mode
         :args (s/cat :t ::t/unix-instance)
         :ret nil?)
