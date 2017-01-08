@@ -70,7 +70,7 @@ Private mode allows you:
 * to use private area for terminal;
 * preserve terminal history and restore it after exit private mode;
 * clear screen and put the cursor in the top-left corner when enter to private mode;
-* disable the scrolling and establish a fixed screen;
+* disable the scrolling and establish a fixed screen.
     
 To enter to a private mode use t/enter-private-mode function.
 
