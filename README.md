@@ -9,7 +9,7 @@ databases, IoT devices, embeddable systems etc., where GUI interface is not avai
 If you build an information security system then terminal interface should be implemented before any GUI interfaces 
 and should be always available, cause under some circumstances the terminal may be the only interface available for access to 
 security system.
-Internet of Things bring us tons of devices where terminal may be the most suitable way for 
+Internet of Things bring us a tons of devices where terminal may be the most suitable way for 
 interacting human <-> machine.
 
 ## About Lanterna
@@ -36,13 +36,16 @@ fits your needs best:
 
 ### Terminal layer
 
-Terminal layer is most basic and low-level interface.
 
-In order to get terminal interface just run clj-terminal.terminal/unix-terminal function
-
+Terminal layer is most basic and low-level interface. 
 ```
     (require '[clj-terminal.terminal :as t])
-    
+```
+
+In order to get terminal interface just 
+run (clj-terminal.terminal/unix-terminal) function:
+
+```
     (let [tm (t/unix-terminal)]
         (t/set-fg-color tm :yellow)
         (t/put-string tm "this is basic terminal example\n")
@@ -51,10 +54,40 @@ In order to get terminal interface just run clj-terminal.terminal/unix-terminal 
 See examples. (cd examples; lein run basic-terminal)
 ![Image of basic-terminal](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/basic-example.png)
 
-If you need to prevent terminate program by Ctrl-C then use unix-terminal-without-ctrl-c function.
+If you need to prevent terminate program by Ctrl-C then to get terminal interface use function:
 ```
     (t/unix-terminal-without-ctrl-c) 
 ```
+
+Lanterna library has many types of terminals (swing, cygwin, unix...) but in clj-terminal the Terminal layer has only 
+unix terminal which works in Linux/Unix and MacOS. If you need to work with clj-terminal in Windows (cygwin), 
+in Swing terminal or you build OS-independent application then you have to use next layer - Screen (ns clj-terminal.screen).  
+
+#### Private mode
+
+Private mode allows you:
+    * to use private area for terminal;
+    * preserve terminal history and restore it after exit private mode;
+    * clear screen and put the cursor in the top-left corner when enter to private mode;
+    * disable the scrolling and establish a fixed screen;
+    
+To enter to a private mode use t/enter-private-mode function.
+
+Example:
+```
+(let [tm (t/unix-terminal)]
+    (t/enter-private-mode tm)
+    (t/put-string tm "this is private mode demo\nPress ENTER to exit.")
+    (read-line)
+    (t/exit-private-mode tm))
+```
+![Image of private-mode](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/private-mode.png)
+
+Notice, when exit from private mode all terminal state is restored.
+
+
+#### Writing text
+
 
 
 ## License

@@ -2,7 +2,7 @@
   (:gen-class)
   (:require [examples.terminal :as t]))
 
-(def examples #{"basic-terminal"})
+(def examples #{"basic-terminal" "private-mode"})
 
 (defn print-help
   []
@@ -17,6 +17,7 @@
   [param]
   (case param
     "basic-terminal" (t/basic-terminal)
+    "private-mode" (t/private-mode)
     (print-help)))
 
 (defn -main
