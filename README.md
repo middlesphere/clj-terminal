@@ -66,6 +66,7 @@ in Swing terminal or you build OS-independent application then you have to use n
 #### Private mode
 
 Private mode allows you:
+
     * to use private area for terminal;
     * preserve terminal history and restore it after exit private mode;
     * clear screen and put the cursor in the top-left corner when enter to private mode;
