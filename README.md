@@ -38,14 +38,14 @@ fits your needs best:
 
 
 Terminal layer is most basic and low-level interface. 
-```
+```clojure
     (require '[clj-terminal.terminal :as t])
 ```
 
 In order to get terminal interface just 
 run (clj-terminal.terminal/unix-terminal) function:
 
-```
+```clojure
     (let [tm (t/unix-terminal)]
         (t/set-fg-color tm :yellow)
         (t/put-string tm "this is basic terminal example\n")
@@ -55,7 +55,8 @@ See examples. (cd examples; lein run basic-terminal)
 ![Image of basic-terminal](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/basic-example.png)
 
 If you need to prevent terminate program by Ctrl-C then to get terminal interface use function:
-```
+
+```clojure
     (t/unix-terminal-without-ctrl-c) 
 ```
 
@@ -75,7 +76,7 @@ Private mode allows you:
 To enter to a private mode use t/enter-private-mode function.
 
 Example:
-```
+```clojure
 (let [tm (t/unix-terminal)]
     (t/enter-private-mode tm)
     (t/put-string tm "this is private mode demo\nPress ENTER to exit.")
