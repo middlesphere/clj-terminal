@@ -1,5 +1,5 @@
 (defproject com.middlesphere/clj-terminal "0.1.0-beta"
-  :description "Wrapper for Java Lanterna lib for building text user interfaces (TUI) in console/terminal mode."
+  :description "Wrapper for Java Lanterna library for building text user interfaces (TUI) in console/terminal mode."
   :url "https://github.com/middlesphere/clj-terminal.git"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
