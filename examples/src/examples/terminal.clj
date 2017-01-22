@@ -55,3 +55,14 @@
     (t/put-string tm "This is color string.")
     (read-line)
     (t/exit-private-mode tm)))
+
+(defn read-input
+  []
+  (let [tm (t/unix-terminal)]
+    (t/enter-private-mode tm)
+    (t/put-string tm "press any key or Escape for exit." 0 0)
+    (loop [k (t/read-input tm)]
+      (when (not= :escape (:value k))
+        (t/put-string tm (str k) 0 1)
+        (recur (t/read-input tm))))
+    (t/exit-private-mode tm)))

@@ -154,6 +154,32 @@ Available colors are: :black :white :red :green :blue :cyan :magenta :yellow :de
 
 ![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/colors.png)
 
+In order to restore default terminal color run (t/set-fg-color tm :default).
+
+### Input
+
+There are two functions for user input: blocking and non-blocking. 
+For blocking input use (t/read-input) which reads key from keyboard and return decoded value as map.
+Example result for Ctrl-A {:value \a, :type :character, :ctrl true, :alt false, :shift false}}
+Function (t/read-input) blocks thread until key pressed. 
+Here is example which reads user input and prints read value until Escape pressed.
+
+```clojure
+(let [tm (t/unix-terminal)]
+    (t/enter-private-mode tm)
+    (t/put-string tm "press any key or Escape for exit." 0 0)
+    (loop [k (t/read-input tm)]
+      (when (not= :escape (:value k))
+        (t/put-string tm (str k) 0 1)
+        (recur (t/read-input tm))))
+    (t/exit-private-mode tm))
+```
+![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/read-input.png)
+
+For non-blocking user input use (t/poll-input) which also reads key from keyboard and return decoded value as map.
+Function (t/poll-input) does not block thread and returns null immediately if there is nothing on the input stream.
+
+
 ## License
 
 Copyright © 2016-2017 by Mikhail Ananyev
