@@ -3,7 +3,7 @@
   (:require [examples.terminal :as t]))
 
 (def examples #{"basic-terminal" "private-mode" "print-chars" "print-chars-pos cur-pos colors"
-                "read-input"})
+                "read-input" "poll-input"})
 
 (defn print-help
   []
@@ -24,6 +24,7 @@
     "cur-pos" (t/cur-pos)
     "colors" (t/colors)
     "read-input" (t/read-input)
+    "poll-input" (t/poll-input)
     (print-help)))
 
 (defn -main

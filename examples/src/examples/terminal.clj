@@ -66,3 +66,16 @@
         (t/put-string tm (str k) 0 1)
         (recur (t/read-input tm))))
     (t/exit-private-mode tm)))
+
+(defn poll-input
+  []
+  (let [tm (t/unix-terminal)]
+    (t/enter-private-mode tm)
+    (Thread/sleep 1000)
+    (t/put-string tm "press any key or Escape for exit." 0 0)
+    (loop [k (t/poll-input tm)]
+      (when (not= :escape (:value k))
+        (t/put-string tm (str k) 0 1)
+        (Thread/sleep 1000)
+        (recur (t/poll-input tm))))
+    (t/exit-private-mode tm)))

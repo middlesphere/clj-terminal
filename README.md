@@ -14,7 +14,7 @@ interacting human <-> machine.
 
 ## About Lanterna
 
-clj-terminal is Clojure wrapper of Lanterna Java library for creating text-based GUIs (https://github.com/mabe02/lanterna)
+clj-terminal is Clojure wrapper of Lanterna 3 Java library for creating text-based GUIs (https://github.com/mabe02/lanterna)
 
 Lanterna is a Java library allowing you to write easy semi-graphical user interfaces in a text-only environment, 
 very similar to the C library curses but with more functionality. Lanterna is supporting xterm compatible terminals 
@@ -119,7 +119,6 @@ But what, if we need to print chars at specific cursor position? So, just add cu
 ![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/print-chars-pos.png)
 
 
-
 ### Moving cursor
 
 In order to move cursor on terminal use function (t/set-cursor-position tm col row). To get current cursor position use 
@@ -179,6 +178,7 @@ Here is example which reads user input and prints read value until Escape presse
 
 For non-blocking user input use (t/poll-input) which also reads key from keyboard and return decoded value as map.
 Function (t/poll-input) does not block thread and returns null immediately if there is nothing on the input stream.
+If keyboard buffer contains some values poll-input will read them one by one.
 
 
 ## License
