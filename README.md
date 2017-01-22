@@ -1,24 +1,22 @@
-# clj-terminal
-
 Table of contents
 ===================
 
-* [clj-terminal](#clj-terminal)
-      * [Why we need a terminal? (IoT era is coming)](#why-we-need-a-terminal-iot-era-is-coming)
-      * [About Lanterna](#about-lanterna)
-      * [Intro](#intro)
-      * [Terminal layer](#terminal-layer)
-         * [Private mode](#private-mode)
-         * [Writing text](#writing-text)
-         * [Moving cursor](#moving-cursor)
-         * [Colors (background and foreground)](#colors-background-and-foreground)
-         * [Input](#input)
-         * [Terminal size](#terminal-size)
-         * [Other functions](#other-functions)
-      * [Screen layer](#screen-layer)
-      * [License](#license)
+* [Table of contents](#table-of-contents)
+   * [Why we need a terminal? (IoT era is coming)](#why-we-need-a-terminal-iot-era-is-coming)
+   * [About Lanterna](#about-lanterna)
+   * [Intro](#intro)
+   * [Terminal layer](#terminal-layer)
+      * [Private mode](#private-mode)
+      * [Writing text](#writing-text)
+      * [Moving cursor](#moving-cursor)
+      * [Colors (background and foreground)](#colors-background-and-foreground)
+      * [Input](#input)
+      * [Terminal size](#terminal-size)
+      * [Other functions](#other-functions)
+   * [Screen layer](#screen-layer)
+   * [License](#license)
 
-## Why we need a terminal? (IoT era is coming)
+# Why we need a terminal? (IoT era is coming)
 
 The GUI interfaces are not always available or suitable for interacting human <-> machine.  
 Terminal is fundamentally simple interface available in any environment and suitable for various cases: 
@@ -30,7 +28,7 @@ security system.
 Internet of Things bring us a tons of devices where terminal may be the most suitable way for 
 interacting human <-> machine.
 
-## About Lanterna
+# About Lanterna
 
 clj-terminal is Clojure wrapper of Lanterna 3 Java library for creating text-based GUIs (https://github.com/mabe02/lanterna)
 
@@ -44,7 +42,7 @@ emulator written in Swing will be used rather than standard output. This way, yo
 IDE (most of them doesn't support ANSI control characters in their output window) and then deploy to your headless 
 server without changing any code.
 
-## Intro
+# Intro
 
 clj-terminal is structured into three layers each built on top of the other and you can easily choose which one 
 fits your needs best:
@@ -52,7 +50,7 @@ fits your needs best:
  2. screen (ns clj-terminal.screen)
  3. text gui (ns clj-terminal.gui)
 
-## Terminal layer
+# Terminal layer
 
 
 Terminal layer is most basic and low-level interface. 
@@ -82,7 +80,7 @@ Lanterna library has many types of terminals (swing, cygwin, unix...) but in clj
 unix terminal which works in Linux/Unix and MacOS. If you need to work with clj-terminal in Windows (cygwin), 
 in Swing terminal or you build OS-independent application then you have to use next layer - Screen (ns clj-terminal.screen).  
 
-### Private mode
+## Private mode
 
 Private mode allows you:
 
@@ -106,7 +104,7 @@ Example:
 Notice, when exit from private mode all terminal state is restored.
 
 
-### Writing text
+## Writing text
 
 To print characters on terminal you may use (t/put-string) function to print string, or (t/put-character) function
 to print an individual character. These functions prints characters in a current cursor position. Here is an example:
@@ -137,7 +135,7 @@ But what, if we need to print chars at specific cursor position? So, just add cu
 ![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/print-chars-pos.png)
 
 
-### Moving cursor
+## Moving cursor
 
 In order to move cursor on terminal use function (t/set-cursor-position tm col row). To get current cursor position use 
 (t/get-cursor-position tm).
@@ -154,7 +152,7 @@ In order to move cursor on terminal use function (t/set-cursor-position tm col r
 ![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/cur-pos.png)
 
 
-### Colors (background and foreground)
+## Colors (background and foreground)
 
 You can change the foreground and background colors using functions (t/set-fg-color) and (t/set-bg-color)
 Available colors are: :black :white :red :green :blue :cyan :magenta :yellow :default 
@@ -173,7 +171,7 @@ Available colors are: :black :white :red :green :blue :cyan :magenta :yellow :de
 
 In order to restore default terminal color run (t/set-fg-color tm :default).
 
-### Input
+## Input
 
 There are two functions for user input: blocking and non-blocking. 
 For blocking input use (t/read-input) which reads key from keyboard and return decoded value as map.
@@ -198,13 +196,13 @@ For non-blocking user input use (t/poll-input) which also reads key from keyboar
 Function (t/poll-input) does not block thread and returns null immediately if there is nothing on the input stream.
 If keyboard buffer contains some values poll-input will read them one by one.
 
-### Terminal size
+## Terminal size
 
 Terminal layer allows to control size of terminal. In order to get current terminal size use function (t/get-terminal-size)
 If you need to maximize terminal screen use (t/maximize). To restore maximized terminal size use (t/unmaximize).
 If you need particular terminal size then use (t/new-size).
 
-### Other functions
+## Other functions
 
  1. (t/clear) - clear terminal screen.
  2. (t/visible-cursor) - enable or disable cursor on terminal.
@@ -212,7 +210,7 @@ If you need particular terminal size then use (t/new-size).
  4. (t/text-effect) - Activates/deactivates various text effects (blink, bold, reverse,underline etc.)
  5. (t/enable-mouse-capture-mode!) - enable catch mouse events in terminal. not all terminals are support this feature.
 
-## Screen layer
+# Screen layer
 
 Screen layer is most useful interface. Think of Screen as "double buffering for your console".
 Screen acts as a buffer. You "draw" to the screen like you would normally draw directly to the terminal, 
@@ -221,7 +219,7 @@ changes and make them happen. This improves performance and makes it easy to avo
 
 
 
-## License
+# License
 
 Copyright © 2016-2017 by Mikhail Ananyev
 
