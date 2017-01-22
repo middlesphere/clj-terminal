@@ -120,7 +120,7 @@ But what, if we need to print chars at specific cursor position? So, just add cu
 
 
 
-#### Moving cursor
+### Moving cursor
 
 In order to move cursor on terminal use function (t/set-cursor-position tm col row). To get current cursor position use 
 (t/get-cursor-position tm).
@@ -136,6 +136,23 @@ In order to move cursor on terminal use function (t/set-cursor-position tm col r
 
 ![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/cur-pos.png)
 
+
+### Colors (background and foreground)
+
+You can change the foreground and background colors using functions (t/set-fg-color) and (t/set-bg-color)
+Available colors are: :black :white :red :green :blue :cyan :magenta :yellow :default 
+
+```clojure
+(let [tm (t/unix-terminal)]
+    (t/enter-private-mode tm)
+    (t/set-fg-color tm :yellow)
+    (t/set-bg-color tm :blue)
+    (t/put-string tm "This is color string.")
+    (read-line)
+    (t/exit-private-mode tm))
+```
+
+![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/colors.png)
 
 ## License
 

@@ -45,3 +45,13 @@
     (t/put-string tm (str (t/get-cursor-position tm)))
     (read-line)
     (t/exit-private-mode tm)))
+
+(defn colors
+  []
+  (let [tm (t/unix-terminal)]
+    (t/enter-private-mode tm)
+    (t/set-fg-color tm :yellow)
+    (t/set-bg-color tm :blue)
+    (t/put-string tm "This is color string.")
+    (read-line)
+    (t/exit-private-mode tm)))
