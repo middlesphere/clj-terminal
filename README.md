@@ -15,7 +15,7 @@ Table of contents
    * [Screen layer](#screen-layer)
    * [License](#license)
 
-# Why we need a terminal? (IoT era is coming)
+# Why we need a terminal?
 
 The GUI interfaces are not always available or suitable for interacting human <-> machine.  
 Terminal is fundamentally simple interface available in any environment and suitable for various cases: 
