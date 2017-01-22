@@ -184,15 +184,15 @@ If keyboard buffer contains some values poll-input will read them one by one.
 
 Terminal layer allows to control size of terminal. In order to get current terminal size use function (t/get-terminal-size)
 If you need to maximize terminal screen use (t/maximize). To restore maximized terminal size use (t/unmaximize).
-If you need particular terminal size then use (t/new-size)
+If you need particular terminal size then use (t/new-size).
 
 ### Other functions
 
-(t/clear) - clear terminal screen.
-(t/visible-cursor) - enable or disable cursor on terminal.
-(t/bell) - Prints 0x7 to the terminal, which will make the terminal (emulator) ring a bell (or more likely beep).
-(t/text-effect) - Activates/deactivates various text effects (blink, bold, reverse,underline etc.)
-(t/enable-mouse-capture-mode!) - enable catch mouse events in terminal. not all terminals are support this feature.
+ 1. (t/clear) - clear terminal screen.
+ 2. (t/visible-cursor) - enable or disable cursor on terminal.
+ 3. (t/bell) - Prints 0x7 to the terminal, which will make the terminal (emulator) ring a bell (or more likely beep).
+ 4. (t/text-effect) - Activates/deactivates various text effects (blink, bold, reverse,underline etc.)
+ 5. (t/enable-mouse-capture-mode!) - enable catch mouse events in terminal. not all terminals are support this feature.
 
 ## License
 
