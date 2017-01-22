@@ -30,11 +30,18 @@
   []
   (let [tm (t/unix-terminal)]
     (t/enter-private-mode tm)
-
     (t/put-character tm \H 2 6) (t/put-character tm \e 2 5) (t/put-character tm \l 2 4) (t/put-character tm \l 2 3)
     (t/put-character tm \o 2 2) (t/put-character tm \! 2 1)
-
     (t/put-string tm "Press ENTER to exit." 4 3)
 
+    (read-line)
+    (t/exit-private-mode tm)))
+
+(defn cur-pos
+  []
+  (let [tm (t/unix-terminal)]
+    (t/enter-private-mode tm)
+    (t/set-cursor-position tm 5 5 )
+    (t/put-string tm (str (t/get-cursor-position tm)))
     (read-line)
     (t/exit-private-mode tm)))

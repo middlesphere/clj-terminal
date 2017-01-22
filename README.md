@@ -102,7 +102,7 @@ to print an individual character. These functions prints characters in a current
 ![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/print-chars.png)
 
 But what, if we need to print chars at specific cursor position? So, just add cursor position like this
-(t/put-string term s col row) or (t/put-character term c col row). Here is an example:
+(t/put-string tm s col row) or (t/put-character tm c col row). Here is an example:
 
 ```clojure
 (let [tm (t/unix-terminal)]
@@ -122,7 +122,20 @@ But what, if we need to print chars at specific cursor position? So, just add cu
 
 #### Moving cursor
 
-In order to move cursor 
+In order to move cursor on terminal use function (t/set-cursor-position tm col row). To get current cursor position use 
+(t/get-cursor-position tm).
+
+```clojure
+(let [tm (t/unix-terminal)]
+    (t/enter-private-mode tm)
+    (t/set-cursor-position tm 5 5 )
+    (t/put-string tm (str (t/get-cursor-position tm)))
+    (read-line)
+    (t/exit-private-mode tm))
+```
+
+![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/cur-pos.png)
+
 
 ## License
 
