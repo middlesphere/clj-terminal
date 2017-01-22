@@ -1,5 +1,23 @@
 # clj-terminal
 
+Table of contents
+===================
+
+* [clj-terminal](#clj-terminal)
+      * [Why we need a terminal? (IoT era is coming)](#why-we-need-a-terminal-iot-era-is-coming)
+      * [About Lanterna](#about-lanterna)
+      * [Intro](#intro)
+      * [Terminal layer](#terminal-layer)
+         * [Private mode](#private-mode)
+         * [Writing text](#writing-text)
+         * [Moving cursor](#moving-cursor)
+         * [Colors (background and foreground)](#colors-background-and-foreground)
+         * [Input](#input)
+         * [Terminal size](#terminal-size)
+         * [Other functions](#other-functions)
+      * [Screen layer](#screen-layer)
+      * [License](#license)
+
 ## Why we need a terminal? (IoT era is coming)
 
 The GUI interfaces are not always available or suitable for interacting human <-> machine.  
@@ -193,6 +211,15 @@ If you need particular terminal size then use (t/new-size).
  3. (t/bell) - Prints 0x7 to the terminal, which will make the terminal (emulator) ring a bell (or more likely beep).
  4. (t/text-effect) - Activates/deactivates various text effects (blink, bold, reverse,underline etc.)
  5. (t/enable-mouse-capture-mode!) - enable catch mouse events in terminal. not all terminals are support this feature.
+
+## Screen layer
+
+Screen layer is most useful interface. Think of Screen as "double buffering for your console".
+Screen acts as a buffer. You "draw" to the screen like you would normally draw directly to the terminal, 
+but it doesn't appear to the user. When you're ready you tell the Screen to redraw. It will calculate the necessary 
+changes and make them happen. This improves performance and makes it easy to avoid showing half-drawn UIs to your users.
+
+
 
 ## License
 

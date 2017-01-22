@@ -1,6 +1,7 @@
 (ns examples.core
   (:gen-class)
-  (:require [examples.terminal :as t]))
+  (:require [examples.terminal :as t]
+            [examples.screen :as s]))
 
 (def examples #{"basic-terminal" "private-mode" "print-chars" "print-chars-pos cur-pos colors"
                 "read-input" "poll-input"})
