@@ -26,7 +26,7 @@ emulator written in Swing will be used rather than standard output. This way, yo
 IDE (most of them doesn't support ANSI control characters in their output window) and then deploy to your headless 
 server without changing any code.
 
-## Usage
+## Intro
 
 clj-terminal is structured into three layers each built on top of the other and you can easily choose which one 
 fits your needs best:
@@ -34,7 +34,7 @@ fits your needs best:
  2. screen (ns clj-terminal.screen)
  3. text gui (ns clj-terminal.gui)
 
-### Terminal layer
+## Terminal layer
 
 
 Terminal layer is most basic and low-level interface. 
@@ -64,7 +64,7 @@ Lanterna library has many types of terminals (swing, cygwin, unix...) but in clj
 unix terminal which works in Linux/Unix and MacOS. If you need to work with clj-terminal in Windows (cygwin), 
 in Swing terminal or you build OS-independent application then you have to use next layer - Screen (ns clj-terminal.screen).  
 
-#### Private mode
+### Private mode
 
 Private mode allows you:
 
@@ -88,10 +88,10 @@ Example:
 Notice, when exit from private mode all terminal state is restored.
 
 
-#### Writing text
+### Writing text
 
 To print characters on terminal you may use (t/put-string) function to print string, or (t/put-character) function
-to print an individual character. Here is an example:
+to print an individual character. These functions prints characters in a current cursor position. Here is an example:
 ```clojure
 (let [tm (t/unix-terminal)]
     (t/put-character tm \H) (t/put-character tm \e) (t/put-character tm \l) (t/put-character tm \l)
@@ -101,7 +101,28 @@ to print an individual character. Here is an example:
 ```
 ![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/print-chars.png)
 
+But what, if we need to print chars at specific cursor position? So, just add cursor position like this
+(t/put-string term s col row) or (t/put-character term c col row). Here is an example:
 
+```clojure
+(let [tm (t/unix-terminal)]
+    (t/enter-private-mode tm)
+
+    (t/put-character tm \H 2 6) (t/put-character tm \e 2 5) (t/put-character tm \l 2 4) (t/put-character tm \l 2 3)
+    (t/put-character tm \o 2 2) (t/put-character tm \! 2 1)
+
+    (t/put-string tm "Press ENTER to exit." 4 3)
+
+    (read-line)
+    (t/exit-private-mode tm))
+```
+![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/print-chars-pos.png)
+
+
+
+#### Moving cursor
+
+In order to move cursor 
 
 ## License
 
