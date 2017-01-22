@@ -1,7 +1,6 @@
 Table of contents
 ===================
 
-* [Table of contents](#table-of-contents)
    * [Why we need a terminal? (IoT era is coming)](#why-we-need-a-terminal-iot-era-is-coming)
    * [About Lanterna](#about-lanterna)
    * [Intro](#intro)
