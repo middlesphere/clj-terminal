@@ -1,7 +1,7 @@
 Table of contents
 ===================
 
-   * [Why we need a terminal? (IoT era is coming)](#why-we-need-a-terminal-iot-era-is-coming)
+   * [Why we need a terminal?](#why-we-need-a-terminal)
    * [About Lanterna](#about-lanterna)
    * [Intro](#intro)
    * [Terminal layer](#terminal-layer)
