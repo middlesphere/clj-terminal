@@ -160,9 +160,10 @@ In order to restore default terminal color run (t/set-fg-color tm :default).
 
 There are two functions for user input: blocking and non-blocking. 
 For blocking input use (t/read-input) which reads key from keyboard and return decoded value as map.
-Example result for Ctrl-A {:value \a, :type :character, :ctrl true, :alt false, :shift false}}
+Example result for Ctrl-A {:value \a, :type :character, :ctrl true, :alt false, :shift false}}.
+
 Function (t/read-input) blocks thread until key pressed. 
-Here is example which reads user input and prints read value until Escape pressed.
+Here is example which reads user input and prints read value until Escape pressed:
 
 ```clojure
 (let [tm (t/unix-terminal)]
