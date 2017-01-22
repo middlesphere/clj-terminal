@@ -90,6 +90,17 @@ Notice, when exit from private mode all terminal state is restored.
 
 #### Writing text
 
+To print characters on terminal you may use (t/put-string) function to print string, or (t/put-character) function
+to print an individual character. Here is an example:
+```clojure
+(let [tm (t/unix-terminal)]
+    (t/put-character tm \H) (t/put-character tm \e) (t/put-character tm \l) (t/put-character tm \l)
+    (t/put-character tm \o) (t/put-character tm \!)
+    (t/put-string tm "\nPress ENTER to exit.\n")
+    (read-line))
+```
+![image of print-chars](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/print-chars.png)
+
 
 
 ## License
