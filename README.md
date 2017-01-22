@@ -67,6 +67,7 @@ run (clj-terminal.terminal/unix-terminal) function:
         (t/set-fg-color tm :default))
 ```
 See examples. (cd examples; lein run basic-terminal)
+
 ![Image of basic-terminal](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/basic-example.png)
 
 If you need to prevent terminate program by Ctrl-C then to get terminal interface use function:
@@ -98,6 +99,7 @@ Example:
     (read-line)
     (t/exit-private-mode tm))
 ```
+
 ![Image of private-mode](https://github.com/middlesphere/clj-terminal/blob/master/examples/resources/private-mode.png)
 
 Notice, when exit from private mode all terminal state is restored.
